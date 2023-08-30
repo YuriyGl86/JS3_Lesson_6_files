@@ -1,0 +1,48 @@
+.container {
+   background-color:blue;
+   display: flex;
+   width: 940px;
+}
+
+.column {
+   background-color: #ddd;
+   width: 300px;
+   min-height: 200px;
+   margin: 10px;
+   padding: 10px;
+}
+
+h2 {
+   margin-top: 10px;
+}
+
+.task {
+   background-color: #fff;
+   min-height: 100px;
+   margin-bottom: 10px;
+   position: relative;
+}
+
+.cross {
+   position: absolute;
+   right: 10px;
+}
+
+.add-card {
+   margin-top: 20px;
+   cursor: pointer;
+}
+
+.text-area {
+   width: 100%;
+   min-height: 100px;
+   resize: vertical;
+   border: none;
+}
+
+.add-card-button {
+   background-color: green;
+   border: none;
+   color: #fff;
+   cursor: pointer;
+}
