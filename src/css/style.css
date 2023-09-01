@@ -1,3 +1,7 @@
+* {
+   box-sizing: border-box;
+}
+
 .container {
    background-color:blue;
    display: flex;
@@ -20,12 +24,19 @@ h2 {
    background-color: #fff;
    min-height: 100px;
    margin-bottom: 10px;
+   width: 280px;
    position: relative;
 }
 
 .cross {
    position: absolute;
    right: 10px;
+   cursor: pointer;
+   display: none;
+}
+
+.task:hover .cross {
+   display: block;
 }
 
 .add-card {
@@ -45,4 +56,20 @@ h2 {
    border: none;
    color: #fff;
    cursor: pointer;
+}
+
+.none {
+   display: none;
+}
+
+.cancel-adding {
+   cursor: pointer;
+}
+
+.dragged {
+   border-radius: 10px;
+   position: absolute;
+   z-index: 999;
+   pointer-events: none;
+   cursor: grab;
 }
