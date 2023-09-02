@@ -1,4 +1,4 @@
-![Build Status](https://github.com/YuriyGl86/JS_3_Lesson_5_Forms_Popovers/actions/workflows/web.yml/badge.svg)
+![Build Status](https://github.com/YuriyGl86/JS3_Lesson_6_files/actions/workflows/web.yml/badge.svg)
 
 
-https://yuriygl86.github.io/JS_3_Lesson_5_Forms_Popovers/
+https://yuriygl86.github.io/JS3_Lesson_6_files/
