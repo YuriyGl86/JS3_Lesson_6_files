@@ -60,11 +60,12 @@ export default class Trello{
         const cardsContainer = addForm.closest('.column').querySelector('.cards-container')
         const newTask = document.createElement('div')
         newTask.classList.add('task')
-        newTask.innerHTML = `
-            <span class="cross">&#10006</span>
-            <p></p>
+        newTask.innerHTML = `<div class="content"></div>
+        <div class="cross-container">
+          <span class="cross">&#10006</span>
+        </div> 
             `
-        newTask.querySelector('p').innerText = addForm.querySelector('textarea').value
+        newTask.querySelector('.content').innerText = addForm.querySelector('textarea').value
         cardsContainer.appendChild(newTask)
         addForm.querySelector('textarea').value = ''
         this.toggleNewTaskForm(addForm)
@@ -73,10 +74,13 @@ export default class Trello{
     DnDInit(){
         this.container.addEventListener('mousedown', (event) => {
             event.preventDefault()
+            if(event.target.matches('.cross')){return}
             const task = event.target.closest('.task')
-            console.log(task)
             if(task){
                 this.currentElement = task
+                const {left, top} = this.currentElement.getBoundingClientRect()
+                this.dx = event.clientX - left
+                this.dy = event.clientY - top
                 this.currentElement.classList.add('dragged')
                 document.documentElement.addEventListener('mouseup', this.onMouseUp)                
                 document.documentElement.addEventListener('mouseover', this.onMouseOver)
@@ -88,6 +92,8 @@ export default class Trello{
     onMouseUp(event){
         this.currentElement.classList.remove('dragged')
         this.currentElement = undefined
+        this.dx = undefined
+        this.dy = undefined
         document.documentElement.removeEventListener('mouseup', this.onMouseUp)
         document.documentElement.removeEventListener('mouseover', this.onMouseOver)
 
@@ -95,10 +101,10 @@ export default class Trello{
 
     onMouseOver(event){
         
-        console.log(event)
+        console.log(this.dx, this.dy)
         if(! this.currentElement){return}
-        this.currentElement.style.top = event.clientY + 'px'
-        this.currentElement.style.left = event.clientX + 'px'
+        this.currentElement.style.top = event.clientY - this.dy + 'px'
+        this.currentElement.style.left = event.clientX - this.dx + 'px'
     }
     
 

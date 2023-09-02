@@ -5,7 +5,7 @@
 .container {
    background-color:blue;
    display: flex;
-   width: 940px;
+   width: 960px;
 }
 
 .column {
@@ -25,11 +25,12 @@ h2 {
    min-height: 100px;
    margin-bottom: 10px;
    width: 280px;
-   position: relative;
+   display: flex;
+   justify-content: space-between;
 }
 
 .cross {
-   position: absolute;
+   /* position: absolute; */
    right: 10px;
    cursor: pointer;
    display: none;
@@ -72,4 +73,9 @@ h2 {
    z-index: 999;
    pointer-events: none;
    cursor: grab;
+}
+
+
+.cross-container {
+   width: 15px;
 }
