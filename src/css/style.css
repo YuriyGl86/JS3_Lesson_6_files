@@ -27,6 +27,7 @@ h2 {
    width: 280px;
    display: flex;
    justify-content: space-between;
+   border: 1px solid #ccc;
 }
 
 .cross {
@@ -72,10 +73,18 @@ h2 {
    position: absolute;
    z-index: 999;
    pointer-events: none;
-   cursor: grab;
 }
 
 
 .cross-container {
    width: 15px;
+}
+
+.cursor-grab {
+   cursor: grabbing;
+}
+
+.move-down {
+   
+   margin-bottom: 100px;
 }

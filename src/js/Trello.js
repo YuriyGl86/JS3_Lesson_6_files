@@ -9,7 +9,7 @@ export default class Trello{
         this.currentElement = undefined
 
         this.onMouseUp = this.onMouseUp.bind(this)
-        this.onMouseOver = this.onMouseOver.bind(this)
+        this.onMouseMove = this.onMouseMove.bind(this)
     }
 
     init(){
@@ -83,7 +83,8 @@ export default class Trello{
                 this.dy = event.clientY - top
                 this.currentElement.classList.add('dragged')
                 document.documentElement.addEventListener('mouseup', this.onMouseUp)                
-                document.documentElement.addEventListener('mouseover', this.onMouseOver)
+                document.documentElement.addEventListener('mousemove', this.onMouseMove)
+                document.documentElement.classList.add('cursor-grab')
             }
             
         })
@@ -94,17 +95,28 @@ export default class Trello{
         this.currentElement = undefined
         this.dx = undefined
         this.dy = undefined
+        this.shiftElem.classList.remove('move-down')
         document.documentElement.removeEventListener('mouseup', this.onMouseUp)
-        document.documentElement.removeEventListener('mouseover', this.onMouseOver)
+        document.documentElement.removeEventListener('mousemove', this.onMouseMove)
+        document.documentElement.classList.remove('cursor-grab')
 
     }
 
-    onMouseOver(event){
-        
-        console.log(this.dx, this.dy)
-        if(! this.currentElement){return}
+    onMouseMove(event){
+        const onMouseElem =  event.target.closest('.task')
+
         this.currentElement.style.top = event.clientY - this.dy + 'px'
         this.currentElement.style.left = event.clientX - this.dx + 'px'
+
+        if(onMouseElem){
+            if(this.shiftElem && onMouseElem != this.shiftElem){
+                this.shiftElem.classList.remove('move-down')
+            }
+            this.shiftElem = onMouseElem
+            onMouseElem.classList.add('move-down')
+        }
+   
+
     }
     
 
